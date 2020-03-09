@@ -22,6 +22,9 @@ public class Order {
     }
 
     public void addItem(Product prod, int quantity) {
+        if (!checkStock(prod, quantity)) {
+            throw new IllegalArgumentException("There is not enough product in a stock");
+        }
         items.add(new OrderItem(prod, quantity));
     }
 
@@ -31,6 +34,10 @@ public class Order {
             total += item.getSubtotal();
         }
         return total;
+    }
+
+    public boolean checkStock(Product prod, int quantity) {
+        return prod.getQuantity() >= quantity;
     }
 
 }
