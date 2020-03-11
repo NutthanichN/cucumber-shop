@@ -15,6 +15,9 @@ Scenario: Buy multiple products
     And I buy Jam with quantity 1
     Then total should be 121.00
 
-Scenario: Buy product with a maximum quantity in stock
+Scenario: Buy product with a maximum amount in stock
     When I buy Bread with quantity 5
     Then total should be 102.5
+
+Scenario: Buy products that are out of stock
+    When I buy 6 of Bread My order is cancelled

@@ -21,8 +21,8 @@ public class Order {
         this.date = LocalDateTime.now();
     }
 
-    public void addItem(Product prod, int quantity) {
-        if (!checkStock(prod, quantity)) {
+    public void addItem(Product prod, int quantity, ProductCatalog catalog) {
+        if (!catalog.checkStock(prod, quantity)) {
             throw new IllegalArgumentException("There is not enough product in a stock");
         }
         items.add(new OrderItem(prod, quantity));
@@ -34,10 +34,6 @@ public class Order {
             total += item.getSubtotal();
         }
         return total;
-    }
-
-    public boolean checkStock(Product prod, int quantity) {
-        return prod.getQuantity() >= quantity;
     }
 
 }
